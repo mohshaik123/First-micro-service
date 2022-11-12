@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('build') {
+            steps {
+                sh '''
+                aws ecr get-login-password --region us-west-2 | sudo docker login --username AWS --password-stdin 437793241539.dkr.ecr.us-west-2.amazonaws.com
+                sudo docker build -t static-app-docker-image-registry:latest 437793241539.dkr.ecr.us-west-2.amazonaws.com/static-app-docker-image-registry:$BUILD_NUMBER
+                sudo docker push 437793241539.dkr.ecr.us-west-2.amazonaws.com/static-app-docker-image-registry:$BUILD_NUMBER'''
+            }
+        }
+        stage('deployment')
+        {
+            sh '''
+            kubectl apply -f deployment.yaml service.yaml ingress.yaml
+            '''
+        }
+    }
+}
