@@ -26,7 +26,7 @@ spec:
           # - Each init container must complete successfully before the next one starts.
       containers:
       - name:  apache-deploy
-        image:  437793241539.dkr.ecr.us-west-2.amazonaws.com/static-app-docker-image-registry:6
+        image:  437793241539.dkr.ecr.us-west-2.amazonaws.com/static-app-docker-image-registry:TAG
         resources:
           requests:
             cpu: 100m
