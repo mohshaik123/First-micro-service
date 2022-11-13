@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  apache-deployment
+  name:  apache_deployment
   namespace: apache
   labels:
-    app:  apache-deployment
+    app:  apache_deployment
 spec:
   selector:
     matchLabels:
-      app: apache-deployment
+      app: apache_deployment
   replicas: 1
   strategy:
     rollingUpdate:
@@ -18,14 +18,14 @@ spec:
   template:
     metadata:
       labels:
-        app:  apache-deployment
+        app:  apache_deployment
     spec:
       # initContainers:
         # Init containers are exactly like regular containers, except:
           # - Init containers always run to completion.
           # - Each init container must complete successfully before the next one starts.
       containers:
-      - name:  apache-deployment
+      - name:  apache_deployment
         image:  MYAPP:latest
         resources:
           requests:
@@ -55,9 +55,9 @@ spec:
         - name: DB_HOST
           valueFrom:
             configMapKeyRef:
-              name: apache-deployment
+              name: apache_deployment
               key: DB_HOST
         ports:
         - containerPort:  80
-          name:  apache-deployment
+          name:  apache_deployment
       restartPolicy: Always

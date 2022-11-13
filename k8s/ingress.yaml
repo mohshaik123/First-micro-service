@@ -3,7 +3,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: apache-static-ingress
+  name: apache_static_ingress
   namespace: apache
 spec:
   rules:
@@ -14,6 +14,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: ServiceName
+            name: apache_static_srv
             port:
               number: 80
