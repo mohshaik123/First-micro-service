@@ -13,7 +13,7 @@ pipeline {
         stage('deployment'){
             steps{
                 sh'''
-                cd workspace/microservice
+                cd workspace/microservice/k8s
                 kubectl apply -f .
             '''
             }
